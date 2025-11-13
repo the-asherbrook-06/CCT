@@ -1,0 +1,59 @@
+-------------
+Setting up S3
+-------------
+
+Step 1: Open your AWS Management Console
+Step 2: Open the S3 console
+Step 3: Click 'Create Bucket' Button
+Step 4: Configure the New Bucket
+    1. Select the bucket type as 'General Purpose'
+    2. Provide a Bucket Name to your Bucket. The bucket name should be globally unique
+    3. Select the Object Ownership as `ACLs Disabled`
+    4. Turn off `block all public access`
+    5. Disable the bucket versioning
+    6. Click on `Create Bucket` button on the bottom right
+
+------------------
+Setting up hosting
+------------------
+
+Step 1: Create a index.html file on your Host system
+Step 2: Type in your HTML content as follows:
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Hello World</title>
+        </head>
+        <body>
+            <h1>Hello World!</h1>
+            <p>Your test page is up and running 🎉</p>
+        </body>
+    </html>
+Step 3: Upload the index.html file into your bucket by dragging and dropping it
+Step 4: Under `Bucket Policies`, go to `Static Website Hosting` and enable it
+    1. Click on `Edit` button
+    2. Select hosting type as `Static Website`
+    3. Specify the index document with your uploaded file's name
+    4. Click on `Save Changes`
+Step 5: Under `Bucket Permissions`, configure the bucket policy as the following:
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "PublicReadGetObject",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::asher-bucket-01/*"
+            }
+        ]
+    }
+
+
+-------------------
+Viewing the Website
+-------------------
+
+Step 1: Under `Bucket Policies`, go to `Static website Hosting`, and click on the Bucket website endpoint URL to view the webpage
