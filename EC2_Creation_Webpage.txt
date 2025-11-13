@@ -73,7 +73,7 @@ Step 1: Open a new terminal window
 Step 2: Connect the EC2 Instance with ssh by using the command:
 	ssh -i keypair.pem username@public_ip
 Step 3: Send in a curl request to the server by the commands
-	curl EC2_IP:Port_No
+	curl EC2_IP:5000
 Step 4: If there exists any output, then the server works fine
 
 -------
