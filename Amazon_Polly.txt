@@ -1,0 +1,22 @@
+------------
+Amazon Polly
+------------
+
+Step 1: Open your Amazon Management console
+Step 2: Open Amazon Polly dashboard
+    1. Click `Try Polly` for new Users
+Step 3: Type in your input text in the field provided
+Step 4: Check the output audio by clicking `Listen` button on top right
+Step 5: Once satisfied, click `Download` button to download the audio file.
+
+------------
+Upload to S3
+------------
+
+Step 1: Open the S3 console
+Step 2: Click 'Create Bucket' Button
+Step 3: Configure the New Bucket
+    1. Select the bucket type as 'General Purpose'
+    2. Provide a Bucket Name to your Bucket. The bucket name should be globally unique
+    3. Click on `Create Bucket` button on the bottom right
+Step 4: Once created, upload your audio file downloaded into the S3 bucket by dragging the file onto it
