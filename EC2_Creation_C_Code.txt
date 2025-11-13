@@ -1,0 +1,33 @@
+# Setting up an EC2 Instance
+
+Step 1: Login into your AWS Console
+Step 2: Create an EC2 Instance
+	1. Give a name to the EC2 Instance
+	2. Select the AMI for the EC2 Instance
+	3. Create a new Login pair for that EC2 instance
+	4. While creating, select .pem for Linux-based hosts and .ppk for windows-based hosts
+	5. Configure the Network, enable ssh, http and https traffic
+	6. Create the instance
+Step 3: Open a Terminal in Linux Host and navigate to the directory where the login pair is saved
+Step 4: Configure the file permissions by running the command
+	chmod 400 keypair.pem #for .pem files
+	chmod 400 keypair.ppk #for .ppk files
+Step 5:	Copy the public IP of the created EC2 instance
+Step 6: Note down the userName of the EC2 Instance:
+	1. Amazon Linux -> ec2-user
+	2. Ubuntu -> ubuntu
+	3. Debian -> admin/debian
+	4. RHEL -> ec2-user
+Step 5: Connect the EC2 Instance with ssh by using the command:
+	ssh -i keypair.pem username@public_ip
+Step 6: Ensure that the ssh is logged in sucessfully
+
+# Setup GCC for C code
+
+Step 1: Update apt packages by using the following commands:
+	sudo apt update
+	sudo apt upgrade
+Step 2: Install the `build-essential` package
+	sudo apt install build-essential
+Step 3: Verify the installations using the command:
+	gcc --version
