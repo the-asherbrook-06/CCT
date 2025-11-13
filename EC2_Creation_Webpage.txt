@@ -1,6 +1,4 @@
---------------------------
-Setting up an EC2 Instance
---------------------------
+# Setting up an EC2 Instance
 
 Step 1: Login into your AWS Console
 Step 2: Create an EC2 Instance
@@ -24,35 +22,4 @@ Step 5: Connect the EC2 Instance with ssh by using the command:
 	ssh -i keypair.pem username@public_ip
 Step 6: Ensure that the ssh is logged in sucessfully
 
---------------------
-Setup GCC for C code
---------------------
-
-Step 1: Update apt packages by using the following commands:
-	sudo apt update
-	sudo apt upgrade
-Step 2: Install the `build-essential` package
-	sudo apt install build-essential
-Step 3: Verify the installations using the command:
-	gcc --version
-
-----------------------------
-Create C code and Compile it
-----------------------------
-
-Step 1: Create a c file using the command:
-	touch example.c
-Step 2: Using nano, edit the file using the command:
-	nano example.c
-Step 3: Enter the c code in the nano editor
-	#include <stdio.h>
-
-	int main() {
-    	printf("Hello, world!\n");
-    	return 0;
-	}
-Step 4: Save the file and exit nano editor
-Step 5: Compile the c code using the command:
-	gcc example.c -o out
-Step 6: Execute the c code
-	./out
+# Setting up EC2 for 
