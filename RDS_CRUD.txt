@@ -3,9 +3,10 @@ Create RDS
 ----------
 
 Step 1: Open your AWS Management Console
-Step 2: Open `Aurora and RDS` dashboard
-Step 3: Click on `Create Database` Button
-Step 4: Configure the RDS to be created
+Step 2: Select `N. Virginia` as the region
+Step 3: Open `Aurora and RDS` dashboard
+Step 4: Click on `Create Database` Button
+Step 5: Configure the RDS to be created
     1. Select the creation method as `Standard Create`
     2. Select your preferred SQL Engine, here MySQL
     3. Type in your DB's Name in `DB Identifier` field
@@ -14,13 +15,15 @@ Step 4: Configure the RDS to be created
     6. Retype your DB's password into the `Confirm Master Password` field
     7. Select the instance configuration as `db3.t3.micro`
     8. Select the Storage type as `General Purpose SSD`
-    9. Set your preferred storage space in `Alloted Storage` field
+    9. Set your preferred storage space in `Alloted Storage` field (greater than 20)
     10. Don't connect your RDS to an EC2 Instance for this experiment
     11. Change the public access as yes
-    11. Once done, click on `Create DB` button on the bottom right
-Step 5: Once the RDS is created, copy the DB endpoint and port
-Step 6: Open your DB Client (preferrably Datagrip by JetBrains)
-Step 7: Using the DB endpoint, port, username and password, connect the DB
+    12. Remove all additional configurations like Backups, Encryption and Maintainence for this experiment
+    13. Once done, click on `Create DB` button on the bottom right
+(It would take some time to create the RDS)
+Step 6: Once the RDS is created, copy the DB endpoint and port
+Step 7: Open your DB Client (preferrably Datagrip by JetBrains)
+Step 8: Using the DB endpoint, port, username and password, connect the DB
 
 
 ---------------
