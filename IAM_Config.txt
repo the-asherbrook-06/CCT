@@ -1,0 +1,48 @@
+--------------
+Setting up IAM
+--------------
+
+Step 1: Login into your Amazon Management Console
+Step 2: Navigate to the IAM Console
+Step 3: Click on `Users` under the Access Management section in Left Navigation pane
+Step 4: Click on `Create User` to create a new IAM user
+Step 5: Type in their username onto the field provided
+Step 6: Provide access to AWS Management Console to allow them to use GUI
+Step 7: Type in their password or let it auto generate it
+Step 8: Click on `Next` Button at the bottom right
+Step 9: Add the user to an Existing Group, if exists, by checking the checkbox next to the Group Name
+Step 10: Click on `Next` Button at the bottom right
+Step 11: Review all details for the user that we are about to create
+Step 12: Click on `Create User` once all details have been filled correctly
+Step 13: A .csv file can be downloaded with all the login credentials of that account, which can be shared later
+
+
+--------------
+Group Policies
+--------------
+
+Step 1: Navigate to your IAM Console
+Step 2: Click on `User Groups` under the Access Management section in Left Navigation pane
+Step 3: Click on `Create Group` Button to create a new User Group
+Step 4: Enter a Group name for that User Group in the field provided
+Step 5: Select the users you want to add to that user Group
+Step 6: Add policies for that user groups using the `Attach Permission Policies`
+Step 7: Review all details for the user group that we are about to create
+Step 8: Click on `Create  User Group` to create that user group
+
+----------
+IAM Policy
+----------
+
+Step 1: Navigate to your IAM Console
+Step 2: Click on `Policies` under the Access Management section in Left Navigation pane
+Step 3: Click on `Create Policy` Button to create a new User Policy
+Step 4: Select the `Visual` Policy editor to use the GUI to edit Policies
+Step 5: In Services, choose the service that you want to apply the plocy to
+Step 6: Under `Actions Allowed` Section, check all actions that can be done by that User Policy
+Step 7: Review all permissions that are allowed for that User Policy
+Step 8: Select all the resources that may apply
+Step 9: Click on `Next` Button at the bottom right
+Step 10: Enter a new Policy Name for that User Policy
+Step 11: Review all information that are provided for that User Policy
+Step 12: Click on `Create Policy` Button at the bottom right to create that User Policy

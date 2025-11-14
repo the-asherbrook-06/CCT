@@ -1,0 +1,56 @@
+----------
+Create RDS
+----------
+
+Step 1: Open your AWS Management Console
+Step 2: Open `Aurora and RDS` dashboard
+Step 3: Click on `Create Database` Button
+Step 4: Configure the RDS to be created
+    1. Select the creation method as `Standard Create`
+    2. Select your preferred SQL Engine, here MySQL
+    3. Type in your DB's Name in `DB Identifier` field
+    4. Type in your DB's username into the `Master Username` field
+    5. Type in your DB's password into the `Master Password` field
+    6. Retype your DB's password into the `Confirm Master Password` field
+    7. Select the instance configuration as `db3.t3.micro`
+    8. Select the Storage type as `General Purpose SSD`
+    9. Set your preferred storage space in `Alloted Storage` field
+    10. Don't connect your RDS to an EC2 Instance for this experiment
+    11. Change the public access as yes
+    11. Once done, click on `Create DB` button on the bottom right
+Step 5: Once the RDS is created, copy the DB endpoint and port
+Step 6: Open your DB Client (preferrably Datagrip by JetBrains)
+Step 7: Using the DB endpoint, port, username and password, connect the DB
+
+
+---------------
+CRUD Operations
+---------------
+
+Step 1: Create a DB using the command
+    CREATE DATABASE InventoryDB;
+Step 2: Use the DB as current DB
+    USE InventoryDB;
+Step 3: Create a Table in DB
+    CREATE TABLE Products (
+        ProductID INT AUTO_INCREMENT PRIMARY KEY,
+        ProductName VARCHAR(50),
+        Quantity INT,
+        Price DECIMAL(10,2)
+    );
+Step 4: Insert Some records into the DB
+    INSERT INTO Products (ProductName, Quantity, Price) VALUES 
+        ('Laptop', 10, 50000.00), 
+        ('Mouse', 25, 250.00);
+Step 5: Retrive data from the DB
+    SELECT * FROM Products;
+Step 6: Update some records in the DB
+    UPDATE Products SET Quantity = 20 WHERE ProductName = 'Mouse';
+Step 7: Delete a Record from the DB
+    DELETE FROM Products WHERE ProductName = 'Laptop';
+
+---------------------------
+Monitoring using CloudWatch
+---------------------------
+
+Step 1: In your DB's homepage in RDS Console, click on `Monitoring` to open CloudWatch for that DB
