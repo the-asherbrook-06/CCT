@@ -4,5 +4,6 @@
 - EC2_Creation_C_Code.txt
 - EC2_Creation_Webpage.txt
 - IAM_Config.txt
+- Lambda_Function.txt
 - RDS_CRUD.txt
 - S3_Static_website.txt

@@ -1,0 +1,95 @@
+------------
+Configure S3
+------------
+
+Step 1: Open your AWS Management Console
+Step 2: Open the S3 console
+Step 3: Click 'Create Bucket' Button
+Step 4: Configure the New Bucket
+    1. Select the bucket type as 'General Purpose'
+    2. Provide a Bucket Name to your Bucket. The bucket name should be globally unique
+    3. Select the Object Ownership as `ACLs Disabled`
+    4. Turn off `block all public access`
+    5. Disable the bucket versioning
+    6. Click on `Create Bucket` button on the bottom right
+
+----------------
+Configure Lambda
+----------------
+
+Step 1: Open the AWS Lambda Console
+Step 2: Navigate to `Functions` using the Left Navigation Pane
+Step 2: Click on the `Create Funtion` button on the top right
+Step 3: Configure your Lambda function
+    1. Provide the name for your Lambda function in the provided field
+    2. Choose your preferred runtime language (here, it is python)
+    3. Click on `Create Function` to create a new empty Lambda Function
+Step 4: Type in the following code into the VS Code Editor that appears next:
+    import json
+    import boto3
+    import logging
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+
+    def lambda_handler(event, context):
+        # Log the raw event for debugging
+        logger.info("Received event: %s", json.dumps(event))
+
+        # Extract S3 info
+        try:
+            record = event['Records'][0]
+            bucket_name = record['s3']['bucket']['name']
+            object_key = record['s3']['object']['key']
+
+            logger.info(f"New file uploaded!")
+            logger.info(f"Bucket: {bucket_name}")
+            logger.info(f"File: {object_key}")
+
+        except Exception as e:
+            logger.error("Error parsing event data: %s", str(e))
+            raise e
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps('Upload logged successfully!')
+        }
+Step 5: Click on `Deploy` Button inside the editor to Deploy the Lambda Function
+Step 6: Navigate to `Configurations` Tab on the same page
+Step 7: Navigate to `Permissions` section through the Left Navigation Pane
+Step 8: Click on the Link under `Role Name`
+Step 9: Click on `Add Permission` dropdown under the `Permission Policies` Card
+Step 10: Click on `Attach Policies` Option from the Dropdown
+Step 11: Select the following Permission Policied
+    AmazonS3ReadOnlyAccess
+    CloudWatchLogsFullAccess
+Step 12: Click on `Add Permissions` Button on the bottom right to add the permissions
+
+
+-----------------
+Configure Trigger
+-----------------
+
+Step 1: Open the AWS Lambda Console
+Step 2: Navigate to `Functions` using the Left Navigation Pane
+Step 3: Click on the Lambda Function created earlier
+Step 4: Under Function overview, click on `Add Trigger` to add a Trigger
+Step 5: Select `S3` as source under the Trigger Configuration
+Step 6: Enter your S3 bucket name that you want to attach the Lambda function to
+Step 7: Set the Event type to `PUT` and remove all other event types
+Step 8: Click on `Add` button at the bottom right to add the Trigger
+
+
+---------------
+Test S3 Trigger
+---------------
+
+Step 1: Open the S3 console
+Step 2: Select your S3 bucket
+Step 3: Upload any files from your Host machine to the S3
+    This should automatically invoke the Trigger
+Step 4: Navigate to CloudWatch console
+Step 5: Select `Logs` and then `Log Groups` from the Left Navigation Pane
+Step 6: Select your AWS Lambda Function
+Step 7: Under `Log Streams`, you can see the logs being generated
+Step 8: Click on the First log to see the detailed logs
