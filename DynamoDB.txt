@@ -1,0 +1,67 @@
+------------------
+Configure DynamoDB
+------------------
+
+Step 1: Login to your AWS Management Console
+Step 2: Navigate to DynamoDB Console
+Step 3: Select `Tables` from the Left Navigation pane
+Step 4: Click on `Create Table` button on the top right
+Step 5: Configure the Table details
+    1. Provide a table name in the field given
+    2. Set yoru primary key as the Partition ID field
+    3. Select `Default Settings` to load up the default configurations
+    4. Click on `Create Table` to create the table
+
+------------
+Perform CRUD
+------------
+
+Step 1: Navigate to DynamoDB Console
+Step 2: Select `Tables` from the Left Navigation pane
+Step 3: Open your newly created table
+Step 4: Click on `Explore Table Items` Button on the top right
+
+# Create
+Step 1: Click on `Create Item` on the Table Card
+Step 2: Enter your Partition Key (primary Key) value
+Step 3: To add more attributes (fields), click on `Add Attribute` dropdown
+Step 4: Select the Data type of the new Attribute
+Step 5: Provide an Attribute Name and value for that attribute
+Step 6: Repeat steps 3 - 5 until all data is entered for an single entry
+Step 7: Click on `Create Item` to store this data as a single entry in the table
+Step 8: Repeat steps 1 - 7 until all data entries have been entered into the DB Table
+
+# Read
+Step 1: Under Scan/Query card, select Query
+Step 2: Type in your Partition Key value to filter
+Step 3: Add other filters under `Filters` section (optional)
+Step 4: Click on `Run` to retrieve all data matching the Query
+
+--------------
+Setting up GSI
+--------------
+
+Step 1: Navigate to DynamoDB Console
+Step 2: Select `Tables` from the Left Navigation pane
+Step 3: Open your newly created table
+Step 4: Click on `Explore Table Items` Button on the top right
+Step 5: Navigate to `Indexes` tab
+Step 6: Click on `Create Index` button
+Step 7: Provide your alternate attribute as Partition Key
+Step 8: Set your Index Name
+Step 9: Click on `Create Index` button at the bottom right to create the new Index
+Step 10: Once the status of the Index changes, we can proceed to use the Index
+
+--------------
+CRUD using GSI
+--------------
+
+Step 1: Navigate to DynamoDB Console
+Step 2: Select `Tables` from the Left Navigation pane
+Step 3: Open your newly created table
+Step 4: Click on `Explore Table Items` Button on the top right
+Step 5: Under Scan/Query card, select Query
+Step 6: Click on the `Select Table or Index` Dropdown
+Step 7: Select the GSI Created earlier
+Step 8: Type in your GSI value to filter
+Step 9: Click on `Run` to retrieve all data matching the Query
