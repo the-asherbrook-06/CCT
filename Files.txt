@@ -1,4 +1,5 @@
 - Amazon_Polly.txt
+- Disaster_Recovery.txt
 - EC2_Creation_C_Code.txt
 - EC2_Creation_Webpage.txt
 - IAM_Config.txt

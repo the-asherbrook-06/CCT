@@ -1,0 +1,81 @@
+-------------
+Configure EC2
+-------------
+
+Step 1: Login to your AWS Management Console
+Step 2: Navigate to EC2 Console
+Step 3: Launch an EC2 Instance, if exists, or create a new onc
+    1. Give a name to the EC2 Instance
+	2. Select the AMI for the EC2 Instance
+	3. Create a new Login pair for that EC2 instance
+	4. While creating, select .pem for Linux-based hosts and .ppk for windows-based hosts
+	5. Configure the Network, enable ssh, http and https traffic
+	6. Create the instance
+
+----------------------------------------------
+# Create 2 EC2 Instances for this experiment
+# One as Main Server, other as Recovery Server
+----------------------------------------------
+
+----------------
+Create Snapshots
+----------------
+
+Step 1: Navigate to EC2 Console
+Step 2: Navigate to `Snapshots` under Elastic Block Store on the left Navigation pane
+Step 3: Click on `Create Snapshot` Button
+Step 4: Select Resource Type as `Volume`
+Step 5: Select the Volume ID as the volume that is attached to the Main Server
+Step 6: Click on `Create Snapshot` button on the Bottom Right to create the Snapshot
+Step 7: Navigate to `Snapshots` under Elastic Block Store on the left Navigation pane
+Step 8: Select the snapshot that we just created
+Step 9: Click on Action dropdown button on the top right
+Step 10: Click on `Create new Volume from the snapshot` Button
+Step 11: Select the Region as the region where the Recovery Server is created
+Step 12: Review all configurations
+Step 13: Click on `Create Volume` button on the bottom right
+
+--------------------
+Attach Volume to EC2
+--------------------
+
+Step 2: Navigate to `Snapshots` under Elastic Block Store on the left Navigation pane
+Step 2: Select the Newly created Snapshot volume
+Step 3: Click on Actions dropdown button on the top right
+Step 4: Click on the attach Volume from the dropdown
+Step 5: Select the Recovery Server from the Instance Dropdown
+Step 6: Provide a device name for the Volume that we are trying to attach from the dropdown
+Step 6: Click on `Attach Volume` button at the bottom right to attach the volume
+
+-------------------------------
+Connect to Recovery EC2 via SSH
+-------------------------------
+
+Step 1: Open a Terminal in Linux Host and navigate to the directory where the login pair is saved
+Step 2: Configure the file permissions by running the command
+	chmod 400 keypair.pem #for .pem files
+	chmod 400 keypair.ppk #for .ppk files
+Step 3:	Copy the public IP of the created Recovery EC2 instance
+Step 4: Note down the userName of the Recovery EC2 Instance:
+	1. Amazon Linux -> ec2-user
+	2. Ubuntu -> ubuntu
+	3. Debian -> admin/debian
+	4. RHEL -> ec2-user
+Step 5: Connect the EC2 Instance with ssh by using the command:
+	ssh -i keypair.pem username@public_ip
+Step 6: Ensure that the ssh is logged in sucessfully
+
+-------------------------
+Mount the Snapshot Volume
+-------------------------
+
+Step 1: Type in the following command to list all drives attached to the instance
+    lsblk
+Step 2: Identify the Snapshot drive attached to the instance
+    1. nvme0nx would be the root volume (x can be any number)
+    2. nvme1nx would be the snapshot volume (x can be any number)
+Step 3: Create a mount point to mount the Snapshot volume
+    sudo mkdir /mnt/recovery
+Step 4: Mount the drive to the mount point
+    sudo mount /dev/nvme1nxp1 /mnt/recovery (x can be any number)
+Step 5: Navigate to that directory to view all recovered files from Main EC2 Instance
